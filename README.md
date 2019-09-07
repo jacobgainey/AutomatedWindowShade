@@ -1,6 +1,8 @@
 # Automated Window Blinds
 Device used for automatically raising and lowering a window shade via a MQTT post or 
-touching an attached up/down switch.
+touching an attached up/down switch. Please note this is a **Work-in-progress**.
+
+All parts avaliable from eBay or Amazon!
 
 ### Software
 ------------------------------------------------------------------------------------------
@@ -19,4 +21,6 @@ touching an attached up/down switch.
 - TTP223 Touch button Module Capacitor type Single Channel Self Locking Touch switch sensor
 - 4.75-23V To 1-17V Mini 360 DC-DC Buck Converter Step Down Module
 
-* All parts avaliable from eBay or Amazon!
+### Project Photos
+------------------------------------------------------------------------------------------
+coming soon ...
