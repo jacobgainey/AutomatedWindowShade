@@ -4,7 +4,7 @@ touching an attached up/down switch. Please note this is a **Work-in-progress**.
 
 All parts avaliable from eBay or Amazon!
 
-### Software
+### Project Software
 ------------------------------------------------------------------------------------------
 - C++ Arduino program used to run on an ESP8266 D1 mini.
   - **motorized-shade-arduino.ino** 
@@ -13,7 +13,7 @@ All parts avaliable from eBay or Amazon!
 - Tincker Cad .stl files used for printing the parts.
   - **motorized-shade-cad.zip**
 
-### Hardware
+### Project Hardware
 ------------------------------------------------------------------------------------------
 - ESP8266 D1 mini (ESP8266MOD) WEMO
 - 2 Way DC Motor Driver Module Speed Dual H-Bridge Replace Stepper L298N
@@ -21,6 +21,10 @@ All parts avaliable from eBay or Amazon!
 - TTP223 Touch button Module Capacitor type Single Channel Self Locking Touch switch sensor
 - 4.75-23V To 1-17V Mini 360 DC-DC Buck Converter Step Down Module
 - Various LEDs, resistors, connectors ...
+
+### Project Links
+------------------------------------------------------------------------------------------
+coming soon ...
 
 ### Project Photos
 ------------------------------------------------------------------------------------------
