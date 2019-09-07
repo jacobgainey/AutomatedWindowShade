@@ -1,7 +1,11 @@
-# AutomatedWindowBlinds
-Arduino (ESP8266 D1) program for raising and lowering window shades
+# Automated Window Blinds
+Device used for automatically raising and lowering a window shade via MQTT or touch switch.
 
-# Material List
+### Software
+------------------------------------------------------------------------------------------
+C++ (Arduino) program. 
+
+### Hardware
 ------------------------------------------------------------------------------------------
 ESP8266 D1 mini (ESP8266MOD) WEMO
 2 Way DC Motor Driver Module Speed Dual H-Bridge Replace Stepper L298N
