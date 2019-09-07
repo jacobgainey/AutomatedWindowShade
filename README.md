@@ -6,7 +6,7 @@ As always, all parts are avaliable from eBay or Amazon!
 
 ### Project Software
 ------------------------------------------------------------------------------------------
-- C++ Arduino program used to run on an ESP8266 D1 mini.
+- The C++ Arduino program that runs on an ESP8266 D1 mini.
   - **motorized-shade-arduino.ino** 
 - PCB layout project file for Dip Trace.
   - **motorized-shade-diptrace.dip**
