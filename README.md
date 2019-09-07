@@ -1,6 +1,6 @@
 # Automated Window Blinds
 Device used for automatically raising and lowering a window shade via a MQTT post or 
-touching an attached up/down switch. Please note this is a **Work-in-progress**.
+pressing an attached up/down touch sensor switch. Please note this is a **Work-in-progress**.
 
 All parts avaliable from eBay or Amazon!
 
