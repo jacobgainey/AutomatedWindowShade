@@ -7,11 +7,11 @@ All parts avaliable from eBay or Amazon!
 ### Software
 ------------------------------------------------------------------------------------------
 - C++ Arduino program used to run on an ESP8266 D1 mini.
-  - motorized-shade-arduino.ino 
+  - **motorized-shade-arduino.ino** 
 - PCB layout project file for Dip Trace.
-  - motorized-shade-diptrace.dip 
+  - **motorized-shade-diptrace.dip**
 - Tincker Cad .stl files used for printing the parts.
-  - motorized-shade-cad.zip 
+  - **motorized-shade-cad.zip**
 
 ### Hardware
 ------------------------------------------------------------------------------------------
@@ -20,6 +20,7 @@ All parts avaliable from eBay or Amazon!
 - 12V Mini DC Metal Gear Motor with Gearwheel Shaft Diameter N20 200RPM
 - TTP223 Touch button Module Capacitor type Single Channel Self Locking Touch switch sensor
 - 4.75-23V To 1-17V Mini 360 DC-DC Buck Converter Step Down Module
+- Various LEDs, resistors, connectors ...
 
 ### Project Photos
 ------------------------------------------------------------------------------------------
