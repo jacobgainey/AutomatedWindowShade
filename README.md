@@ -1,8 +1,8 @@
 # Automated Window Blinds
-Device used for automatically raising and lowering a window shade via a MQTT post or 
+IoT Device used for automatically raising or lowering a window shade via a MQTT post or 
 pressing an attached up/down touch sensor switch. Please note this is a **Work-in-progress**.
 
-All parts avaliable from eBay or Amazon!
+As always, all parts are avaliable from eBay or Amazon!
 
 ### Project Software
 ------------------------------------------------------------------------------------------
