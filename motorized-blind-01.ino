@@ -1,10 +1,18 @@
 #include <EspMQTTClient.h>
 
+// Electronic Materials (modules)
+/ ------------------------------------------------------------------------------------------
+// ESP8266 D1 mini (ESP8266MOD) WEMO
+// 2 Way DC Motor Driver Module Speed Dual H-Bridge Replace Stepper L298N
+// 12V Mini DC Metal Gear Motor with Gearwheel Shaft Diameter N20 200RPM
+// TTP223 Touch button Module Capacitor type Single Channel Self Locking Touch switch sensor
+// 4.75-23V To 1-17V Mini 360 DC-DC Buck Converter Step Down Module
+
 const String nickname = "sky-esp8266-03";
 
 #define ledPin 2    // built in led
-#define uPin D3   // touch pin 
-#define dPin D4   // touch pin
+#define uPin D3     // touch pin (move shades up)
+#define dPin D4     // touch pin (move shdes down)
 #define fwdPin D5   // motor pin (up)
 #define bwdPin D6   // motor pin (down)
 
@@ -16,12 +24,12 @@ unsigned long currentMillis;
 unsigned long period = 60000;   
 
 EspMQTTClient client(
-  "Skywalker",
+  "Skywalker-IoT",
   "beergarden",
   "192.168.66.8",  // MQTT Broker server ip
   "jgainey",       // Can be omitted if not needed
   "password",      // Can be omitted if not needed
-  nickname.c_str() // Client name that uniquely identify your device
+  nickname.c_str() // Client name 
 );
 
 void setup()
@@ -34,47 +42,61 @@ void setup()
   // Optionnal functionnalities of EspMQTTClient : 
   client.enableDebuggingMessages();                    // Enable debugging messages sent to serial output
   client.enableHTTPWebUpdater("jgainey", "password");  // Enable the web updater. 
-  //client.enableLastWillMessage("skywalker/lastwills" + nickname, "offline", false);
+  client.enableLastWillMessage("skywalker/lastwills/" + nickname, "offline", false);
 
   pinMode(fwdPin, OUTPUT);
   pinMode(bwdPin, OUTPUT);
   pinMode(ledPin, OUTPUT);
   
+  // set high (WEMO D1 mini's are opposite?)
   digitalWrite(fwdPin, 1); 
   digitalWrite(bwdPin, 1); 
   digitalWrite(ledPin, 1); 
+}
+
+// --- private internal functions
+void moveShadeUp(){
+    digitalWrite(bwdPin, 0);
+    digitalWrite(fwdPin, 1);
+}
+void moveShadeDown(){
+    digitalWrite(bwdPin, 1);
+    digitalWrite(fwdPin, 0);
+}
+void stopMovement(){
+    digitalWrite(bwdPin, 0);
+    digitalWrite(fwdPin, 0);
+}
+
+// standard ack  (blink led)
+void blink(int x){
+  for (int i = 0; i <= x; i++) {
+    digitalWrite(ledPin, 0); delay(50);
+    digitalWrite(ledPin, 1); delay(50);
+  }
 }
 
 // This function is called once everything is connected (Wifi and MQTT)
 void onConnectionEstablished()
 {
   // Subscribe to topic and display received message to Serial
-  client.subscribe("skywalker/esp8266/" + nickname, [](const String & payload) {
+  client.subscribe("skywalker/sensors/esp8266/" + nickname, [](const String & payload) {
     Serial.println(payload);
     
-      // message options   
-      if (payload.startsWith("heartbeat") == true){
-        period = atol(payload.substring(10).c_str());
-        Serial.print("changing heartbeat interval to ");
-        Serial.println(payload.substring(10));
-      }
-      
-      if (payload == "up"){ // *** move up
+      // --- watch mqtt topic for input ()
+      if (payload == "up"){
         Serial.println("moving blind up");
-        digitalWrite(bwdPin, 0);
-        digitalWrite(fwdPin, 1);
+        moveShadeUp();
       }
       
       if (payload == "down"){ // *** move down
         Serial.println("moving blind down");
-        digitalWrite(bwdPin, 1);
-        digitalWrite(fwdPin, 0);
+        moveShadeUp();
       }
       
       if (payload == "stop"){ // *** stop
         Serial.println("stopping blinds");
-        digitalWrite(bwdPin, 0);
-        digitalWrite(fwdPin, 0);
+        stopMovement();
       }
       
       if (payload == "bark"){ // *** acknowledge
@@ -87,15 +109,10 @@ void onConnectionEstablished()
   client.publish("skywalker/esp8266", nickname + " online", false);
 }
 
-void blink(int x){
-  for (int i = 0; i <= x; i++) {
-    digitalWrite(ledPin, 0); delay(50);
-    digitalWrite(ledPin, 1); delay(50);
-  }
-}
 
 void loop()
 {
+  // mqtt loop
   client.loop(); 
 
   if (digitalRead(fwdPin) == 1 && digitalRead(bwdPin) == 0){
@@ -106,19 +123,14 @@ void loop()
     blink(3);
     delay(1000);
   }
-  if (digitalRead(fwdPin) == 0 && digitalRead(bwdPin) == 0){
-//    blink(1);
-//    delay(1000);
-  }
-
+  
+  // --- watch for touch pad input
   if (digitalRead(uPin) == 0){
-      digitalWrite(bwdPin, 0);
-      digitalWrite(fwdPin, 1);
+      moveShadeUp();
     }
 
   if (digitalRead(dPin) == 0){
-      digitalWrite(bwdPin, 1);
-      digitalWrite(fwdPin, 0);
+      moveShadeDown();
     }
   
   currentMillis = millis();
