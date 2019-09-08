@@ -1,4 +1,4 @@
-#include <EspMQTTClient.h>
+#include <"EspMQTTClient.h">
 
 // Electronic Materials (modules)
 / ------------------------------------------------------------------------------------------
@@ -12,7 +12,7 @@ const String nickname = "sky-esp8266-03";
 
 #define ledPin 2    // built in led
 #define uPin D3     // touch pin (move shades up)
-#define dPin D4     // touch pin (move shdes down)
+#define dPin D4     // touch pin (move shades down)
 #define fwdPin D5   // motor pin (up)
 #define bwdPin D6   // motor pin (down)
 
@@ -39,7 +39,7 @@ void setup()
   Serial.begin(115200);
   Serial.println("Skywalker Motorized Blinds");
   
-  // Optionnal functionnalities of EspMQTTClient : 
+  // Optional functionalities of EspMQTTClient : 
   client.enableDebuggingMessages();                    // Enable debugging messages sent to serial output
   client.enableHTTPWebUpdater("jgainey", "password");  // Enable the web updater. 
   client.enableLastWillMessage("skywalker/lastwills/" + nickname, "offline", false);
