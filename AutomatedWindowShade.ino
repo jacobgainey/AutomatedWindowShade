@@ -1,7 +1,7 @@
-#include <"EspMQTTClient.h">
+#include <EspMQTTClient.h>
 
 // Electronic Materials (modules)
-/ ------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------
 // ESP8266 D1 mini (ESP8266MOD) WEMO
 // 2 Way DC Motor Driver Module Speed Dual H-Bridge Replace Stepper L298N
 // 12V Mini DC Metal Gear Motor with Gearwheel Shaft Diameter N20 200RPM
@@ -42,7 +42,7 @@ void setup()
   // Optional functionalities of EspMQTTClient : 
   client.enableDebuggingMessages();                    // Enable debugging messages sent to serial output
   client.enableHTTPWebUpdater("jgainey", "password");  // Enable the web updater. 
-  client.enableLastWillMessage("skywalker/lastwills/" + nickname, "offline", false);
+  //client.enableLastWillMessage("skywalker/lastwills/" + nickname, "offline", false);
 
   pinMode(fwdPin, OUTPUT);
   pinMode(bwdPin, OUTPUT);
@@ -76,7 +76,7 @@ void blink(int x){
   }
 }
 
-// This function is called once everything is connected (Wifi and MQTT)
+// This function is called once everything is connected (WiFi and MQTT)
 void onConnectionEstablished()
 {
   // Subscribe to topic and display received message to Serial
@@ -125,13 +125,13 @@ void loop()
   }
   
   // --- watch for touch pad input
-  if (digitalRead(uPin) == 0){
-      moveShadeUp();
-    }
-
-  if (digitalRead(dPin) == 0){
-      moveShadeDown();
-    }
+//  if (digitalRead(uPin) == 1){
+//      moveShadeUp();
+//    }
+//
+//  if (digitalRead(dPin) == 1){
+//      moveShadeDown();
+//    }
   
   currentMillis = millis();
   if (currentMillis - startMillis >= period)
